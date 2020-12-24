@@ -1,3 +1,5 @@
+import 'package:crumbly/app/app.dart';
+import 'package:crumbly/components/appBar.dart';
 import 'package:crumbly/screens/catogory.dart';
 import 'package:crumbly/screens/home.dart';
 import 'package:crumbly/screens/profile.dart';
@@ -10,6 +12,7 @@ class BottomNavScreen extends StatefulWidget {
 }
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
+  String _title;
   int _currentIndex = 0;
   final List<Widget> _children = [
     HomePage(),
@@ -17,37 +20,20 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     Search(),
     Profile(),
   ];
+
+  @override
+  void initState() {
+    _title = "Crumblyy";
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        actions: [
-          new IconButton(
-            icon: Icon(
-              Icons.flag,
-              color: Colors.grey[400],
-              size: 36,
-            ),
-            onPressed: () {},
-          ),
-          SizedBox(width: 10),
-          new IconButton(
-            icon: Icon(
-              Icons.messenger_sharp,
-              color: Colors.grey[400],
-              size: 26,
-            ),
-            onPressed: () {},
-          ),
-        ],
-        title: new Text(
-          "Crumblyy",
-          style: TextStyle(fontSize: 26, color: Colors.grey[400]),
-        ),
+      appBar: MyAppBar(
+        title: _title,
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -90,6 +76,23 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
+      switch (_currentIndex) {
+        case 0:
+          _title = "Crumblyy";
+          break;
+        case 1:
+          _title = "Categories";
+          break;
+        case 2:
+          _title = "Search";
+          break;
+        case 3:
+          _title = "profile";
+          break;
+        default:
+          _title = "Crumblyy";
+          break;
+      }
     });
   }
 }
