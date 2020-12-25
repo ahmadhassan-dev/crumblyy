@@ -57,8 +57,30 @@ class _MyAppBarState extends State<MyAppBar>
                 onPressed: () {},
               )
             : Container(),
+        (widget.title == "Profile")
+            ? new IconButton(
+                icon: Icon(
+                  Icons.add_circle,
+                  color: Colors.grey[400],
+                  size: 26,
+                ),
+                onPressed: () {},
+              )
+            : Container(),
+        (widget.title == "Profile")
+            ? new IconButton(
+                icon: Icon(
+                  Icons.more_vert,
+                  color: Colors.grey[400],
+                  size: 26,
+                ),
+                onPressed: () {},
+              )
+            : Container(),
       ],
-      title: (widget.title == "Crumblyy" || widget.title == "Categories")
+      title: (widget.title == "Crumblyy" ||
+              widget.title == "Categories" ||
+              widget.title == "Profile")
           ? new Text(
               "${widget.title}",
               style: TextStyle(fontSize: 26, color: Colors.grey[400]),

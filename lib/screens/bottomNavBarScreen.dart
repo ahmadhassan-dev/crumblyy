@@ -87,7 +87,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           _title = "Search";
           break;
         case 3:
-          _title = "profile";
+          _title = "Profile";
           break;
         default:
           _title = "Crumblyy";

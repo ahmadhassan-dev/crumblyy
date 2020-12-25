@@ -1,9 +1,30 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       body: ListView(
         children: [
           SizedBox(
@@ -266,121 +287,199 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            color: Colors.grey[100],
-            child: Column(
-              children: [
-                Padding(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              child: Container(
+                height: 55,
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(
+                    25.0,
+                  ),
+                ),
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 250,
-                        width: 150,
-                        child: new Card(
-                          elevation: 05,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Image.asset(
-                            "images/all_img1.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                  child: TabBar(
+                    controller: _tabController,
+                    // give the indicator a decoration (color and border radius)
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        25.0,
                       ),
-                      Container(
-                        height: 250,
-                        width: 150,
-                        child: new Card(
-                          elevation: 05,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Image.asset(
-                            "images/all_img2.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                      color: Colors.yellow[900],
+                    ),
+                    labelColor: Colors.white,
+                    unselectedLabelColor: Colors.yellow[900],
+                    tabs: [
+                      // first tab [you can add an icon using the icon property]
+                      Tab(
+                        text: 'All',
+                      ),
+
+                      // second tab [you can add an icon using the icon property]
+                      Tab(
+                        text: 'For You',
+                      ),
+                      Tab(
+                        text: 'Trending',
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(right: 8.0, left: 8, bottom: 8),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 250,
-                        width: 150,
-                        child: new Card(
-                          elevation: 05,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Image.asset(
-                            "images/all_img3.jpg",
-                            fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          // // tab bar view here
+          // Expanded(
+          //   child: TabBarView(
+          //     controller: _tabController,
+          //     children: [
+          //       // first tab bar view widget
+          //       Center(
+          //         child: Text(
+          //           'Place Bid',
+          //           style: TextStyle(
+          //             fontSize: 25,
+          //             fontWeight: FontWeight.w600,
+          //           ),
+          //         ),
+          //       ),
+
+          //       // second tab bar view widget
+          //       Center(
+          //         child: Text(
+          //           'Buy Now',
+          //           style: TextStyle(
+          //             fontSize: 25,
+          //             fontWeight: FontWeight.w600,
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          Expanded(
+            child: Container(
+              color: Colors.grey[100],
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          height: 250,
+                          width: 150,
+                          child: new Card(
+                            elevation: 05,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Image.asset(
+                              "images/all_img1.jpg",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        height: 250,
-                        width: 150,
-                        child: new Card(
-                          elevation: 05,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Image.asset(
-                            "images/all_img4.jpg",
-                            fit: BoxFit.cover,
+                        Container(
+                          height: 250,
+                          width: 150,
+                          child: new Card(
+                            elevation: 05,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Image.asset(
+                              "images/all_img2.jpg",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(right: 8.0, left: 8, bottom: 8),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        height: 250,
-                        width: 150,
-                        child: new Card(
-                          elevation: 05,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Image.asset(
-                            "images/all_img5.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 250,
-                        width: 150,
-                        child: new Card(
-                          elevation: 05,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Image.asset(
-                            "images/all_img6.jpg",
-                            fit: BoxFit.cover,
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(right: 8.0, left: 8, bottom: 8),
+                    child: new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          height: 250,
+                          width: 150,
+                          child: new Card(
+                            elevation: 05,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Image.asset(
+                              "images/all_img3.jpg",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          height: 250,
+                          width: 150,
+                          child: new Card(
+                            elevation: 05,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Image.asset(
+                              "images/all_img4.jpg",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(right: 8.0, left: 8, bottom: 8),
+                    child: new Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          height: 250,
+                          width: 150,
+                          child: new Card(
+                            elevation: 05,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Image.asset(
+                              "images/all_img5.jpg",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 250,
+                          width: 150,
+                          child: new Card(
+                            elevation: 05,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Image.asset(
+                              "images/all_img6.jpg",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         ],
